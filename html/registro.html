@@ -1,56 +1,87 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <title>Registrarse</title>
-    <link rel="stylesheet" href="../style/registro.css">
+    <link rel="stylesheet" href="../style/registro.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css"
+    />
   </head>
   <body>
-    <form action="../html/inicio.html">
-    <div class="login-box">
-      <h1>Datos Del paciente</h1>
-      <br>
-      <div class="panel-izquierdo">
-        <label>Primer Nombre </label>
-        <input type="text" placeholder="Ingrese su Nombre">
-        
-        <label>Fecha</label>
-        <input type="date" name="fecha" min="2021-09-13" max="2022-09-13">
-        <label>Cedula</label>
-        <input type="number" placeholder="ingrese su numero de Cedula">
+    <form action="../html/login.html" id="form1">
+      <!-- <form id="form1"> -->
+      <div class="login-box">
+        <h1>Datos Del paciente</h1>
+        <br />
+        <div class="panel-izquierdo">
+          <label>Nombres </label>
+          <input type="text" placeholder="Ingrese su Nombre" id="nombres" />
+
+          <label>Fecha</label>
+          <input
+            type="date"
+            name="fecha"
+            min="2021-09-13"
+            max="2022-09-13"
+            id="fecha"
+          />
+          <label>Cedula</label>
+          <input
+            type="text"
+            placeholder="ingrese su numero de Cedula"
+            id="cedula"
+          />
+          <label>Usuario</label>
+          <input
+            type="text"
+            placeholder="ingrese su usuario de acceso"
+            id="usuario"
+          />
+        </div>
+        <div class="panel-derecho">
+          <label>Apellidos</label>
+          <input
+            type="text"
+            placeholder="ingrese su Apellidos"
+            id="apellidos"
+          />
+          <label>Celular</label>
+          <input type="text" placeholder="Ingrese Celular" id="celular" />
+          <label>Correo Electronico</label>
+          <input
+            type="text"
+            placeholder="ingrese su correo Electronico"
+            id="correo"
+          />
+          <!-- ¿ Aqui empieza el eye icon -->
+          <label>Contraseña</label>
+          <div class="ojo">
+            <span class="icon-eye"> <x class="bi-eye-slash-fill"></x> </span>
+            <input
+              type="password"
+              id="contrasena"
+              name="pass"
+              id="pass"
+              placeholder="Contraseña"
+            />
+          </div>
+
+          <!-- ¿ Aqui termina el eye icon -->
+        </div>
+        <input type="submit" value="Continuar" onclick="getData()" />
+
+        <input
+          type="button"
+          class="volver"
+          value="volver"
+          onclick="history.back()"
+        />
+        <br />
+        <br />
       </div>
-      <div class="panel-derecho">
-        <label>Apellido</label>
-        <input type="text" placeholder="ingrese su Apellidos">
-        <label>Celular</label>
-        <input type="text" placeholder="Ingrese Celular">
-        <label>Correo Electronico</label>
-        <input type="text" placeholder="ingrese su correo Electronico">
-      </div>
-      <input type="submit" value="Continuar">
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <a href="login.html">Volver al inicio</a><br>
-    </div>
-  </form>
+    </form>
+    <script src="../js/registro.js"></script>
   </body>
 </html>

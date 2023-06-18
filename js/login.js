@@ -1,21 +1,20 @@
+
+
 setTimeout(() => {
-    var EyeIcon = document.querySelector("body > div > div > form > div > span");
-EyeIcon.addEventListener("click", function () {
-    const icon = this.querySelector("x");
-    if (this.nextElementSibling.type === "password") {
-        this.nextElementSibling.type = "text";
-        icon.classList.remove("bi-eye-slash-fill")
-        icon.classList.add("bi-eye-fill")
-    } else {
-        icon.classList.remove("bi-eye-fill")
-        icon.classList.add("bi-eye-slash-fill")
-        this.nextElementSibling.type = "password"
-    }
-});
+    var EyeIcon = document.querySelector("span.icon-eye");
+    EyeIcon.addEventListener("click", function () {
+        const icon = this.querySelector("x");
+        if (this.nextElementSibling.type === "password") {
+            this.nextElementSibling.type = "text";
+            icon.classList.remove("bi-eye-slash-fill")
+            icon.classList.add("bi-eye-fill")
+        } else {
+            icon.classList.remove("bi-eye-fill")
+            icon.classList.add("bi-eye-slash-fill")
+            this.nextElementSibling.type = "password"
+        }
+    });
 }, 30);
-
-
-
 
 
 function validar() {
@@ -27,14 +26,20 @@ function validar() {
         { usuario: "JonnathanM", contrasena: "7777" },
         { usuario: "Brian", contrasena: "4517" }
     ];
-
-    var Cencontradas = contraseñasDeBD.filter(function(contrasenas) {
+    if (localStorage.getItem("DatosRegistro")) {
+        //obtengo los datos de registro del local storage y convierto el json en un objeto.
+        var DatosDeLocalStorage = JSON.parse(localStorage.getItem("DatosRegistro"));
+        contraseñasDeBD.push({ usuario: DatosDeLocalStorage.usuario, contrasena: DatosDeLocalStorage.contrasena });
+    } else {
+        alert("Por favor registre un usuario y clave en el boton '¿Desea registrarse?' ")
+    }
+    var Cencontradas = contraseñasDeBD.filter(function (contrasenas) {
         return contrasenas.usuario === usuario && contrasenas.contrasena === contrasena;
     });
 
     // Si las contrasenas son válidas, redirecciona a otra página
     if (Cencontradas.length > 0) {
-        alert("Bienvenid@, "+usuario);
+        alert("Bienvenid@, " + usuario);
         window.location.href = "../html/inicio.html";
     } else {
         // Si las contrasenas no son válidas, disminuye el contador de intentos
