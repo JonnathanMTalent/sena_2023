@@ -37,6 +37,10 @@ function getData(objDatosRegistro) {
     //         guardar = false;
     //     }
     // }
+    document.querySelector('form')
+        .addEventListener('submit', e => {
+            e.preventDefault()
+        })
 
     var nombres = document.getElementById("nombres").value;
     var apellidos = document.getElementById("apellidos").value;
@@ -100,3 +104,4 @@ function getData(objDatosRegistro) {
 //             alert(JSON.stringify(data))
 //         })
 // }
+

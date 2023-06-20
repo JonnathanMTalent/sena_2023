@@ -13,10 +13,14 @@ document.addEventListener("DOMContentLoaded", function () {
         var fila = citaTomada.fila;
         var columna = citaTomada.columna;
         var celda = tabla.rows[fila].cells[columna];
-        celda.classList.remove("available");
-        celda.classList.add("unavailable");
-        celda.innerText = "No disponible";
-        celda.removeAttribute("onclick");
+        celda.classList.remove("unavailable");
+        celda.classList.add("available");
+        // celda.addAttribute("onclick");
+        celda.innerText = "Cancelar cita";
+        tabla.rows[fila].cells[columna - 1].innerText = citaTomada.hora;
+        tabla.rows[fila].cells[columna - 2].innerText = citaTomada.fecha;
+        tabla.rows[fila].cells[columna - 3].innerText = citaTomada.doctor;
+        tabla.rows[fila].cells[columna - 4].innerText = citaTomada.lugar;
     }
 
     // Asignar evento onclick a las celdas disponibles
@@ -31,33 +35,42 @@ document.addEventListener("DOMContentLoaded", function () {
                 var fecha = this.parentNode.querySelector("td:nth-child(3)").textContent.trim();
                 var hora = this.parentNode.querySelector("td:nth-child(4)").textContent.trim();
                 var idCita = this.parentNode.getAttribute("id");
-                tomarCita(fila, columna, lugar, doctor, fecha, hora, idCita);
+                cancelarCita(fila, columna);
             };
         }
     }
 
     // Función para tomar una cita
-    function tomarCita(fila, columna, lugar, doctor, fecha, hora, idCita) {
+    function cancelarCita(fila, columna) {
         var celda = tabla.rows[fila].cells[columna];
         celda.classList.remove("available");
         celda.classList.add("unavailable");
         celda.removeAttribute("onclick");
-        celda.innerText = "No disponible";
-
-        // Guardar la cita tomada en el local storage
-        var citaTomada = {
-            fila: fila,
-            columna: columna,
-            lugar: lugar,
-            doctor: doctor,
-            fecha: fecha,
-            hora: hora,
-            idCita: idCita
-        };
-        // citasTomadas.push(citaTomada);
-        // localStorage.setItem("citasTomadas", JSON.stringify(citasTomadas));
+        celda.innerText = "Cancelada";
+        //filtramos la cita cancelada y modificamos el json  de la local starage
         let obj = JSON.parse(localStorage.getItem("DatosRegistro"));
-        obj.citas.push(citaTomada);
+        obj.citas = obj.citas.filter(elem => elem.fila != fila);
         localStorage.setItem("DatosRegistro", JSON.stringify(obj));
     }
 });
+
+
+// let tablaDinamica = function (lista) {
+//     let encabezado = '<table border="1"><tr><th>Titulo del empleo</th><th>Locacion</th><th>Url</th><tr></table>';
+//     for (let item of lista) {
+//         let fila = "<tr><th>";
+//         fila += item.titulo;
+//         fila += "</tr>"
+
+//         fila += "<tr>"
+//         fila += item.locacion;
+//         fila += "</tr>"
+
+//         fila += "<tr>"
+//         fila += item.url;
+//         fila += "</tr>"
+//     }
+// }
+
+// let tabla1 = [{ titulo: 'gato', locacion: 'casa', url: 'www.gato.com' }, { titulo: 'gato', locacion: 'casa', url: 'www.gato.com' }];
+// tablaDinamica(tabla1);

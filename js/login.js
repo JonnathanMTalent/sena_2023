@@ -21,17 +21,20 @@ function validar() {
     var usuario = document.getElementById("Correo").value;
     var contrasena = document.getElementById("contrasena").value;
 
-    var contraseñasDeBD = [
-        { usuario: "Diana Marcela", contrasena: "1234" },
-        { usuario: "JonnathanM", contrasena: "7777" },
-        { usuario: "Brian", contrasena: "4517" }
-    ];
+    // var contraseñasDeBD = [
+    //     { usuario: "Diana Marcela", contrasena: "1234" },
+    //     { usuario: "JonnathanM", contrasena: "7777" },
+    //     { usuario: "Brian", contrasena: "4517" }
+    // ];
+    //variable para que guardemos el usuario y contraseña, ya no trae valores por defecto sino que trae los que se hayan registrado en la sección registro.
+    var contraseñasDeBD = [];
+
     if (localStorage.getItem("DatosRegistro")) {
         //obtengo los datos de registro del local storage y convierto el json en un objeto.
         var DatosDeLocalStorage = JSON.parse(localStorage.getItem("DatosRegistro"));
         contraseñasDeBD.push({ usuario: DatosDeLocalStorage.usuario, contrasena: DatosDeLocalStorage.contrasena });
     } else {
-        alert("Por favor registre un usuario y clave en el boton '¿Desea registrarse?' ")
+        alert("Por favor registre un usuario y clave en el boton '¿Desea registrarse? Recuerde no dejar campos vacios' ")
     }
     var Cencontradas = contraseñasDeBD.filter(function (contrasenas) {
         return contrasenas.usuario === usuario && contrasenas.contrasena === contrasena;
