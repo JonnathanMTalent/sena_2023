@@ -88,6 +88,22 @@ td.unavailable {
   color: black;
 }
 
+#botonContrasena {
+  border: none;
+  outline: none;
+  height: 40px;
+  background: #615c5c;
+  color: #fff;
+  font-size: 18px;
+  border-radius: 20px;
+}
+
+#botonContrasena:hover {
+  cursor: pointer;
+  background: #f39c82;
+  color: #000;
+}
+
 @media screen and (max-width: 800px) {
   body {
     background: rgb(25, 125, 143);
